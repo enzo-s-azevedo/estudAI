@@ -6,7 +6,7 @@ function logar(){
     if(login == "admin@admin" && senha == "admin"){
         location.href = "../admin/admin.html";
     }else{
-        location.href = "../tela inicial/index.html";
+        location.href = "../tela_inicial/index.html";
     }
 
 }
