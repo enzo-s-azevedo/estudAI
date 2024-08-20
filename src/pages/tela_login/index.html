@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="src/css/styles.css" />
+  </head>
+  <body>
+    <div id="login">
+      <img src="imagem logo.png" class="imagem-logo" alt="Logo" />
+      <div class="caixa">
+        <form id="login-form">
+          <div class="email">
+            <input type="email" id="email" placeholder="E-mail" required />
+          </div>
+
+          <div class="senha">
+            <input type="password" id="password" placeholder="Senha" required />
+          </div>
+
+          <div class="entrar">
+            <input
+              type="button"
+              id="login-button"
+              value="Entrar"
+              onclick="login()"
+            />
+          </div>
+        </form>
+      </div>
+
+      <div class="mensagem-direcionamento">
+        <p>
+          Não tem uma conta?
+          <a href="../tela_cadastro/index.html">Cadastre-se aqui.</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="src/javascript/script.js"></script>
+    <script src="../../scripts/login.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+    <script src="../../scripts/firebase-init.js"></script>
+    <script src="../../scripts/validations.js"></script>
+  </body>
+</html>
