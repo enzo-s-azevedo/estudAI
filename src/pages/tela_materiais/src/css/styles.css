@@ -77,3 +77,7 @@ h1 {
 input:focus {
     outline: none;
 }
+
+.results {
+    background-color: #ffffff;
+}
