@@ -1,22 +1,28 @@
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(180deg, #000000, #cad43a);
+* {
+  margin: 0;
+  padding: 0;
 }
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(180deg, #000000, #cad43a);
+}
+
 .direcionamento-cronômetro,
 .direcionamento-materiais {
-    width: 400px;
-    height: 200px;
-    border-radius: 10px;
-    background-color: #cad43a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 200px;
-    margin-left: auto;
-    margin-right: auto;
+  width: 400px;
+  height: 200px;
+  border-radius: 10px;
+  background-color: #cad43a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }

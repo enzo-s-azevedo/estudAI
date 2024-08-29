@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela inicial</title>
     <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="../../styles/global.css">
 </head>
 <body>
+    <button id="logout-button" onclick="logout()">Sair</button>
     <div id="Tela inicial">
         <div class="direcionamento-cronômetro">
             <p><a href="../tela_cronometro/index.html">Cronômetro.</a></p>
         </div>
         <div class="direcionamento-materiais">
             <p><a href="../tela_materiais/materiais.html">Biblioteca de Materiais.</a></p>
-        </div>            
+        </div>
 </body>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script src="../../scripts/firebase-init.js"></script>
+    <script src="../../scripts/logout.js"></script>
