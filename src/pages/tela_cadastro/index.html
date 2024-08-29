@@ -13,25 +13,25 @@
         <img src="imagem logo.png" class = "imagem-logo">
         <div class="caixa">
             <div class="nome">
-                <input type ="name" placeholder="Nome">
+                <input type ="name" id="nome" placeholder="Nome">
             </div>
 
-            <div class="email">
-                <input type ="email" placeholder="E-mail">
+            <div class="email" id="email">
+                <input type ="email" id="email" placeholder="E-mail">
             </div>
     
             <div class="senha">
-                <input type ="password" placeholder="Senha">
+                <input type ="password" id="password" placeholder="Senha">
             </div>
     
             <div class="cadastrar">
-                <input type ="submit" value="Cadastrar">
+                <input type ="button" value="Cadastrar" onclick="register()">
             </div>
         </div>    
         <div class="mensagem-direcionamento">
-            <p>Já tem uma conta? <a href="../tela login/index.html">Entre aqui.</a></p>
+            <p>Já tem uma conta? <a href="../tela_login/index.html">Entre aqui.</a></p>
         </div>        
 </body>
-<script> src = "index.js"</script>
+<script src="../../scripts/register.js"></script>
 
 </html>
