@@ -1,0 +1,10 @@
+#logout-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 15px 5px 15px;
+  background-color: #cad43a;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 4rem;
+}
