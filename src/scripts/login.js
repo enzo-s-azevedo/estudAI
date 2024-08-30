@@ -1,3 +1,19 @@
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    window.location.href = "../../pages/tela_inicial";
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    const email = form.email().value;
+    const password = form.password().value;
+    if (email && password) {
+      login();
+    }
+  }
+});
+
 function onChangeEmail() {
   toggleButtonsDisable();
   toggleEmailErrors();
@@ -12,9 +28,11 @@ function login() {
   firebase
     .auth()
     .signInWithEmailAndPassword(form.email().value, form.password().value)
-    .then((res) => {
+    .then(() => {
       // hideLoading();
-      window.location.href = "../tela_inicial";
+      if (form.email().value == "admin@admin.com") {
+        window.location.href = "../admin";
+      } else window.location.href = "../tela_inicial";
     })
     .catch((error) => {
       // hideLoading();
