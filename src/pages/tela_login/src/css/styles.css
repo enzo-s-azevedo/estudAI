@@ -1,12 +1,3 @@
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(180deg, #000000, #cad43a);
-}
-
 #login {
   text-align: center;
   justify-content: center;
@@ -41,21 +32,6 @@ body {
   background-color: rgb(134, 243, 134);
   margin-top: 15px;
   margin-left: -400px;
-}
-
-.mensagem-direcionamento {
-  width: 400px;
-  height: 50px;
-  border-radius: 10px;
-  background-color: rgb(242, 250, 242);
-  margin-top: 830px;
-  margin-left: -400px;
-}
-
-.imagem-logo {
-  margin-top: -300px;
-  margin-left: -100px;
-  border-radius: 15px;
 }
 
 input::placeholder {

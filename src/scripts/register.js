@@ -4,6 +4,17 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 });
 
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    const email = form.email().value;
+    const password = form.password().value;
+    const confirmPassword = form.confirmPassword().value;
+    if (email && password && confirmPassword) {
+      register();
+    }
+  }
+});
+
 function onChangeEmail() {
   const email = form.email().value;
   form.emailRequiredError().style.display = email ? "none" : "block";
