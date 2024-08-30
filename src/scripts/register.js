@@ -1,6 +1,6 @@
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    window.location.href = "/pages/home";
+    window.location.href = "/pages/tela_inicial";
   }
 });
 
@@ -33,7 +33,7 @@ function onChangeConfirmPassword() {
 }
 
 function register() {
-  showLoading();
+  // showLoading();
   const email = form.email().value;
   const password = form.password().value;
   console.log("Email:", email);
@@ -43,11 +43,11 @@ function register() {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
-      hideLoading();
+      // hideLoading();
       window.location.href = "../home/";
     })
     .catch((error) => {
-      hideLoading();
+      // hideLoading();
       alert(getErrorMessage(error));
     });
 }

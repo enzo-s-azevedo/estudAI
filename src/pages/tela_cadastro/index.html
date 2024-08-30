@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro</title>
-    <link rel="stylesheet" href="src/css/styles.css">
-</head>
+    <link rel="stylesheet" href="src/css/styles.css" />
+  </head>
 
-<body>
-    <div id="cadastro">        
-        <img src="imagem logo.png" class = "imagem-logo">
-        <div class="caixa">
-            <div class="nome">
-                <input type ="name" id="nome" placeholder="Nome">
-            </div>
+  <body>
+    <form id="cadastro">
+      <img src="imagem logo.png" class="imagem-logo" />
+      <div class="caixa">
+        <!-- <div class="nome">
+          <input type="text" id="nome" placeholder="Nome" />
+        </div> -->
+        <!-- Por enquanto não vamos solicitar o nome durante o cadastro -->
 
-            <div class="email" id="email">
-                <input type ="email" id="email" placeholder="E-mail">
-            </div>
-    
-            <div class="senha">
-                <input type ="password" id="password" placeholder="Senha">
-            </div>
-    
-            <div class="cadastrar">
-                <input type ="button" value="Cadastrar" onclick="register()">
-            </div>
-        </div>    
-        <div class="mensagem-direcionamento">
-            <p>Já tem uma conta? <a href="../tela_login/index.html">Entre aqui.</a></p>
-        </div>        
-</body>
-<script src="../../scripts/register.js"></script>
+        <div class="email">
+          <input type="email" id="email" placeholder="E-mail" />
+        </div>
 
+        <div class="senha">
+          <input type="password" id="password" placeholder="Senha" />
+        </div>
+
+        <div class="confirmarSenha">
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirmar Senha"
+          />
+        </div>
+
+        <div class="cadastrar">
+          <input type="button" value="Cadastrar" onclick="register()" />
+        </div>
+      </div>
+    </form>
+    <div class="mensagem-direcionamento">
+      <p>
+        Já tem uma conta? <a href="../tela_login/index.html">Entre aqui.</a>
+      </p>
+    </div>
+  </body>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script src="../../scripts/firebase-init.js"></script>
+  <script src="../../scripts/register.js"></script>
 </html>
