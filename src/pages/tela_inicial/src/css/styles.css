@@ -4,13 +4,7 @@
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(180deg, #000000, #cad43a);
+  height: 100vh !important;
 }
 
 .direcionamento-cronômetro,

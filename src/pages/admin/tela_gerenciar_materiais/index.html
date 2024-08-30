@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pesquisa de Materiais</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../../../styles/global.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="container">
-        <h1>Gereniar Materiais</h1>
-        <form id="searchMaterials-form">
-            <label for="search">Pesquisar:</label>
-            <input type="text" id="search" nqame="search" required>
+      <h1>Gereniar Materiais</h1>
+      <form id="searchMaterials-form">
+        <label for="search">Pesquisar:</label>
+        <input type="text" id="search" nqame="search" required />
 
-            <button type="submit">Pesquisar</button>
-        </form>
+        <button type="submit">Pesquisar</button>
+      </form>
 
-        <div class="results" id="results">
-            <table id="materialsTable">
-                <thead>
-                    <tr>
-                        <th>Material</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-        </div>
+      <div class="results" id="results">
+        <table id="materialsTable">
+          <thead>
+            <tr>
+              <th>Material</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
 
     <script src="javascript/script.js"></script>
-</body>
-
+  </body>
 </html>
