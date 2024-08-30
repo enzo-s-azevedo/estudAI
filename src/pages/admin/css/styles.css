@@ -1,96 +1,81 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(180deg, #000000, #cad43a);
+  height: 100vh !important;
 }
 
 .container {
-    background: #cad43a;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
+  background: #cad43a;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
 }
 
-
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 form {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 label {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 5px;
-    display: block;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
 }
 
 input[type="text"],
 textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    resize: vertical;
-    font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 16px;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 1px;
-    transition: background-color 0.3s ease;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 1px;
+  transition: background-color 0.3s ease;
 }
 
-
 button:hover {
-    background-color: #0056b3;
-
+  background-color: #0056b3;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-    font-size: 16px;
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  font-size: 16px;
 }
 
 th {
-    background-color: #f4f4f4;
-    color: #333;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 td {
-    background-color: #fff;
-    color: #333;
+  background-color: #fff;
+  color: #333;
 }
-
-
