@@ -5,13 +5,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   const searchForm = document.getElementById("searchMaterials-form");
   const searchInput = document.getElementById("search");
 
-  //   const materials1 = firebase
-  //     .firestore()
-  //     .collection("study_materials")
-  //     .get()
-  //     .then((snapshot) => {
-  //         snapshot.docs.map(doc => {})
-  //     });
   let materials = [];
   await firebase
     .firestore()
