@@ -8,18 +8,19 @@
     <link rel="stylesheet" href="../../styles/global.css" />
   </head>
   <body>
-    <button id="logout-button" onclick="logout()">Sair</button>
+    <a href="../tela_inicial/"
+      ><button id="home-button" class="home button">Home</button></a
+    >
+    <button id="logout-button" class="logout button" onclick="logout()">
+      Sair
+    </button>
 
     <div class="container">
       <h1>Controle de Materiais</h1>
       <form id="cadastro-form">
-        <a href="../tela_cadastro_materiais/" class="button"
-          >Cadastro de Materiais</a
-        >
+        <a href="../tela_cadastro_materiais/">Cadastro de Materiais</a>
         <div>
-          <a href="../tela_gerenciar_materiais/" class="button"
-            >Gerenciamento de Materiais</a
-          >
+          <a href="../tela_gerenciar_materiais/">Gerenciamento de Materiais</a>
         </div>
       </form>
     </div>
