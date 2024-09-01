@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", function () {
+  firebase.auth();
+});
+
 document
   .getElementById("searchMaterials-form")
   .addEventListener("submit", async function (event) {
@@ -11,7 +15,6 @@ document
       document.getElementById("search").value.toLowerCase()
     );
 
-    //codigo teste de materiais
     let materials = [];
     await firebase
       .firestore()
@@ -56,6 +59,7 @@ document
                 <p>Disciplina: ${material.subject}</p>
                 <p>Autor: ${material.author}</p>
                 <button onclick="adicionarBiblioteca('${material.id}')">adicionar a biblioteca</button>
+                <button onclick="removerBiblioteca('${material.id}')">Remover da biblioteca</button>
             `;
         resultsDiv.appendChild(materialDiv);
       });
@@ -65,6 +69,122 @@ document
   });
 
 function adicionarBiblioteca(id) {
-  alert(`Você adicionou a biblioteca o material com o ID ${id}`);
-  //codigo ainda a implementar para adicionar um livro a biblioteca do usuario
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    alert("Usuário não autenticado. Faça login para adicionar à biblioteca.");
+    return;
+  }
+  const userId = user.uid;
+
+  const materialRef = firebase
+    .firestore()
+    .collection("study-materials")
+    .doc(id);
+  const userLibraryRef = firebase
+    .firestore()
+    .collection("users")
+    .doc(userId)
+    .collection("library");
+
+  userLibraryRef
+    .doc(id)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        alert("Material já está na biblioteca.");
+      } else {
+        materialRef
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              const materialData = doc.data();
+              userLibraryRef
+                .doc(id)
+                .set(materialData)
+                .then(() => {
+                  alert(
+                    `Você adicionou o material com o ID ${id} à sua biblioteca.`
+                  );
+                  changeButtonText(`adicionar-${id}`, "Adicionado");
+                  disableButton(`adicionar-${id}`);
+                })
+                .catch((error) => {
+                  console.error(
+                    "Erro ao adicionar o material à biblioteca:",
+                    error
+                  );
+                });
+            } else {
+              console.error("Material não encontrado.");
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao obter o material:", error);
+          });
+      }
+    })
+    .catch((error) => {
+      console.error("Erro ao verificar a biblioteca:", error);
+    });
+}
+
+function changeButtonText(id, text) {
+  const button = document.getElementById(id);
+  if (button) {
+    button.innerText = text;
+  }
+}
+
+function disableButton(id) {
+  const button = document.getElementById(id);
+  if (button) {
+    button.disabled = true;
+  }
+}
+
+function removerBiblioteca(id) {
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    alert("Usuário não autenticado. Faça login para remover da biblioteca.");
+    return;
+  }
+  const userId = user.uid;
+
+  const userLibraryRef = firebase
+    .firestore()
+    .collection("users")
+    .doc(userId)
+    .collection("library");
+
+  userLibraryRef
+    .doc(id)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        userLibraryRef
+          .doc(id)
+          .delete()
+          .then(() => {
+            alert(`Você removeu o material com o ID ${id} da sua biblioteca.`);
+            changeButtonText(`adicionar-${id}`, "Adicionar");
+            enableButton(`adicionar-${id}`);
+          })
+          .catch((error) => {
+            console.error("Erro ao remover o material da biblioteca:", error);
+          });
+      } else {
+        alert("Material não encontrado na biblioteca.");
+        console.error("Material não encontrado na biblioteca.");
+      }
+    })
+    .catch((error) => {
+      console.error("Erro ao verificar a biblioteca:", error);
+    });
+}
+
+function enableButton(id) {
+  const button = document.getElementById(id);
+  if (button) {
+    button.disabled = false;
+  }
 }
