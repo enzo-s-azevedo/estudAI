@@ -8,17 +8,24 @@
     <link rel="stylesheet" href="../../styles/home.css">
 </head>
 <body>
-    <button id="logout-button" onclick="logout()">Sair</button>
+    <div><a href="../admin/"
+      ><button id="admin-button" class="admin button">Admin</button></a
+    ></div>
+    <button id="logout-button" class="logout button" onclick="logout()">Sair</button>
     <div id="Tela inicial">
         <div class="direcionamento-cronômetro">
             <p><a href="../tela_cronometro/">Cronômetro.</a></p>
         </div>
         <div class="direcionamento-materiais">
             <p><a href="../tela_materiais/">Biblioteca de Materiais.</a></p>
-        </div>            
+        </div>       
+        <div class="direcionamento-minha-biblioteca">
+            <p><a href="../tela_materiais/">Minha Biblioteca</a></p>
+        </div>     
 </body>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
 <script src="../../scripts/firebase-init.js"></script>
 <script src="../../scripts/auth-guard.js"></script>
 <script src="../../scripts/logout.js"></script>
+<script src="../../scripts/home.js"></script>

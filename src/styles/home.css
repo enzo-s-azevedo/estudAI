@@ -8,7 +8,8 @@ body {
 }
 
 .direcionamento-cronômetro,
-.direcionamento-materiais {
+.direcionamento-materiais,
+.direcionamento-minha-biblioteca {
   width: 400px;
   height: 200px;
   border-radius: 10px;
@@ -16,7 +17,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
 }
