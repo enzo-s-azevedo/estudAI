@@ -106,14 +106,15 @@ body {
   height: auto;
   max-width: 500px;
   margin: 20px;
-  margin-top: -260px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-.file-list {
+.total-time-list {
   margin-top: 20px;
 }
 
-.file-item {
+.total-time-item {
   padding: 10px;
   border-bottom: 1px solid #ffffff;
 }

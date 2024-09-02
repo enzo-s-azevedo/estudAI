@@ -1,6 +1,17 @@
+document.addEventListener("DOMContentLoaded", () =>
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      calculateTotalStudyTime();
+    } else {
+      alert("User not logged in!");
+    }
+  })
+);
+
 const timerEl = document.getElementById("timer");
 const saveList = document.getElementById("save-timer");
 const subjectSelection = document.getElementById("subject-selection");
+const totalTimeList = document.getElementById("total-time-list");
 
 let intervalId = 0;
 let timer = 0;
@@ -99,6 +110,10 @@ const saveCurrentTime = async () => {
 
     savedTimes.push({ subject, time: timer });
     displaySavedTimes();
+    document
+      .querySelectorAll(".total-time-item")
+      .forEach((item) => item.remove());
+    calculateTotalStudyTime();
   } catch (error) {
     console.error("Error saving study record:", error);
   }
@@ -130,3 +145,42 @@ const fetchSubjects = async () => {
 fetchSubjects();
 
 document.getElementById("save").addEventListener("click", saveCurrentTime);
+
+// Function to calculate the total study time for each subject
+const calculateTotalStudyTime = async () => {
+  try {
+    const user = firebase.auth().currentUser;
+    if (!user) {
+      alert("User not logged in!");
+      return;
+    }
+
+    const userId = user.uid;
+    const studyRecordsRef = firebase
+      .firestore()
+      .collection("users")
+      .doc(userId)
+      .collection("study-records");
+
+    const snapshot = await studyRecordsRef.get();
+    const totalTimes = {};
+
+    snapshot.forEach((doc) => {
+      const { subject, duration } = doc.data();
+      if (totalTimes[subject]) {
+        totalTimes[subject] += duration;
+      } else {
+        totalTimes[subject] = duration;
+      }
+    });
+
+    for (const subject in totalTimes) {
+      const listItem = document.createElement("li");
+      listItem.textContent = `${subject}: ${formatTime(totalTimes[subject])}`;
+      listItem.classList.add("total-time-item");
+      totalTimeList.appendChild(listItem);
+    }
+  } catch (error) {
+    console.error("Error calculating total study time:", error);
+  }
+};
