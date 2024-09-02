@@ -44,6 +44,10 @@ app.use(
   "/pages/tela_materiais",
   express.static(path.join(__dirname, "/src/pages/tela_materiais"))
 );
+app.use(
+  "/pages/tela_minha_biblioteca",
+  express.static(path.join(__dirname, "/src/pages/tela_minha_biblioteca"))
+);
 
 // Serve the styles
 app.use("/styles", express.static(stylesDirectoryPath));

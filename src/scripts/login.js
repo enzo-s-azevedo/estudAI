@@ -24,18 +24,18 @@ function onChangePassword() {
 }
 
 function login() {
-  // showLoading();
+  showLoading();
   firebase
     .auth()
     .signInWithEmailAndPassword(form.email().value, form.password().value)
     .then(() => {
-      // hideLoading();
+      hideLoading();
       if (form.email().value == "admin@admin.com") {
         window.location.href = "../admin";
       } else window.location.href = "../tela_inicial";
     })
     .catch((error) => {
-      // hideLoading();
+      hideLoading();
       alert(getErrorMessage(error));
     });
 }
@@ -55,16 +55,16 @@ function register() {
 }
 
 function recoverPassword() {
-  // showLoading();
+  showLoading();
   firebase
     .auth()
     .sendPasswordResetEmail(form.email().value)
     .then(() => {
-      // hideLoading();
+      hideLoading();
       alert("Email de recuperação de senha enviado com sucesso");
     })
     .catch((error) => {
-      // hideLoading();
+      hideLoading();
       alert(getErrorMessage(error));
     });
 }
