@@ -55,7 +55,7 @@ function register() {
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
       // hideLoading();
-      window.location.href = "../home/";
+      window.location.href = "/pages/tela_inicial";
     })
     .catch((error) => {
       // hideLoading();
