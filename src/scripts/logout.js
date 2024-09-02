@@ -3,7 +3,7 @@ function logout() {
     .auth()
     .signOut()
     .then(() => {
-      window.location.href = "../tela_login";
+      window.location.href = "../../pages/tela_login";
     })
     .catch(() => alert("Erro ao sair"));
 }
