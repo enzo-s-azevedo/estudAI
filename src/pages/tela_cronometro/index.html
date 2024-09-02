@@ -29,13 +29,20 @@
         <button id="save">
           <i class="fa-solid fa-save"></i>
         </button>
+        <div class="caixa">
+          <label for="subject">Matéria</label>
+          <select name="subject" id="subject-selection">
+            <option>Selecionar</option>
+          </select>
+        </div>
       </div>
       <div id="save-timer"></div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+    <script src="../../scripts/firebase-init.js"></script>
+    <script src="../../scripts/auth-guard.js"></script>
+    <script src="../../scripts/cronometro.js"></script>
   </body>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
-  <script src="../../scripts/firebase-init.js"></script>
-  <script src="../../scripts/cronometro.js"></script>
-  <script src="../../scripts/auth-guard.js"></script>
 </html>
