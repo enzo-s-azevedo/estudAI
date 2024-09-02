@@ -76,8 +76,8 @@ const saveCurrentTime = async () => {
   }
 
   const subject = subjectElement.value.trim();
-  if (subject === "") {
-    alert("Digite a matéria!");
+  if (subject === "Selecionar") {
+    alert("Escolha uma materia!");
     return;
   }
 
