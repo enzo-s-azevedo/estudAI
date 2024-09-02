@@ -1,0 +1,44 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  background: linear-gradient(180deg, #000000, #cad43a);
+  margin: 0;
+  padding: 10px;
+}
+
+.container {
+  background: #cad43a;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.file-list {
+  margin-top: 20px;
+}
+
+.file-item {
+  padding: 10px;
+  border-bottom: 1px solid #ffffff;
+}
+
+.loading {
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.loading label {
+  font-size: 32px;
+}
