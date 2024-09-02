@@ -6,6 +6,7 @@ document
   .getElementById("searchMaterials-form")
   .addEventListener("submit", async function (event) {
     event.preventDefault();
+    showLoading();
 
     function removerAcentos(str) {
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -33,6 +34,7 @@ document
           materials.push(material);
           return material;
         });
+        hideLoading();
       });
 
     const filteredMaterials = materials.filter(

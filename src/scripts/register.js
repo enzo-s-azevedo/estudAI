@@ -44,7 +44,7 @@ function onChangeConfirmPassword() {
 }
 
 function register() {
-  // showLoading();
+  showLoading();
   const email = form.email().value;
   const password = form.password().value;
   console.log("Email:", email);
@@ -54,11 +54,11 @@ function register() {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
-      // hideLoading();
+      hideLoading();
       window.location.href = "/pages/tela_inicial";
     })
     .catch((error) => {
-      // hideLoading();
+      hideLoading();
       alert(getErrorMessage(error));
     });
 }
