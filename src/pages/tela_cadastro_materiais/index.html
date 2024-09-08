@@ -3,42 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registro de Materiais</title>
+    <title>Gerenciar Materiais</title>
     <link rel="stylesheet" href="../../styles/global.css" />
     <link rel="stylesheet" href="../../styles/admin.css" />
   </head>
 
   <body>
     <div class="container">
-      <h1>Registro de Materiais</h1>
-      <form id="registerBooks-form">
-        <label for="title">Título:</label>
-        <input type="text" id="title" name="title" required />
+      <h1>Gerenciar Materiais</h1>
 
+      <form id="createMaterial-form">
         <label for="id">ID:</label>
         <input type="text" id="id" name="id" required />
 
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required />
+        
         <label for="description">Descrição:</label>
-        <textarea
-          id="description"
-          name="description"
-          rows="4"
-          required
-        ></textarea>
+        <textarea id="description" name="description" required></textarea>
 
-        <label for="subject">Disciplina:</label>
+        <label for="subject">Matéria:</label>
         <input type="text" id="subject" name="subject" required />
 
         <label for="author">Autor:</label>
         <input type="text" id="author" name="author" required />
 
-        <button type="submit">Cadastrar Material</button>
-        <div class="register"></div>
+        <button type="submit">Criar Material</button>
       </form>
     </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+    <script src="../../scripts/firebase-init.js"></script>
+    <script src="../../scripts/auth-proxy.js"></script>
+    <script src="../../scripts/admin-redirect.js"></script>
+    <script src="../../scripts/material-create.js"></script>
   </body>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
-  <script src="../../scripts/firebase-init.js"></script>
-  <script src="../../scripts/auth-guard.js"></script>
 </html>

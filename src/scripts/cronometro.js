@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () =>
     if (user) {
       calculateTotalStudyTime();
     } else {
-      alert("User not logged in!");
+      alert("Usuário não está logado!");
     }
   })
 );
@@ -15,7 +15,6 @@ const totalTimeList = document.getElementById("total-time-list");
 
 let intervalId = 0;
 let timer = 0;
-let savedTimes = [];
 
 const formatTime = (time) => {
   const hours = Math.floor(time / 360000);
@@ -40,22 +39,17 @@ const toggleTimer = () => {
 
   clearInterval(intervalId);
 
-  if (action == "start" || action == "continue") {
+  if (action === "start" || action === "continue") {
     intervalId = setInterval(() => {
       timer += 1;
       setTimer(timer);
     }, 10);
     button.setAttribute("action", "pause");
     button.innerHTML = '<i class="fa-solid fa-pause"></i>';
-  } else if (action == "pause") {
+  } else if (action === "pause") {
     button.setAttribute("action", "continue");
     button.innerHTML = '<i class="fa-solid fa-play"></i>';
   }
-};
-
-const displaySavedTimes = () => {
-  alert("Tempo salvo com sucesso!");
-  resetTimer();
 };
 
 const resetTimer = () => {
@@ -67,17 +61,11 @@ const resetTimer = () => {
   button.innerHTML = '<i class="fa-solid fa-play"></i>';
 };
 
-// Function to save the current time
 const saveCurrentTime = async () => {
   const subjectElement = document.getElementById("subject-selection");
-  if (!subjectElement) {
-    alert("Element with id 'subject' not found!");
-    return;
-  }
-
-  const subject = subjectElement.value.trim();
-  if (subject === "Selecionar") {
-    alert("Escolha uma materia!");
+  const selectedBook = subjectElement.value.trim();
+  if (selectedBook === "Selecionar") {
+    alert("Escolha um livro!");
     return;
   }
 
@@ -91,67 +79,59 @@ const saveCurrentTime = async () => {
   try {
     const user = firebase.auth().currentUser;
     if (!user) {
-      alert("User not logged in!");
+      alert("Usuário não está logado");
       return;
     }
 
     const userId = user.uid;
-    const subjectRef = firebase
+    const studyRecordRef = firebase
       .firestore()
       .collection("users")
       .doc(userId)
       .collection("study-records")
       .doc();
 
-    await subjectRef.set({
+    await studyRecordRef.set({
       duration: duration,
-      subject: subject,
+      bookTitle: selectedBook,
     });
 
-    savedTimes.push({ subject, time: timer });
-    displaySavedTimes();
-    document
-      .querySelectorAll(".total-time-item")
-      .forEach((item) => item.remove());
-    calculateTotalStudyTime();
+    resetTimer(); // Resetar o cronômetro após salvar
+    calculateTotalStudyTime(); // Atualizar o tempo total
   } catch (error) {
-    console.error("Error saving study record:", error);
+    console.error("Erro ao salvar tempo de estudo", error);
   }
 };
 
 document.getElementById("power").addEventListener("click", toggleTimer);
 document.getElementById("save").addEventListener("click", saveCurrentTime);
 
-// Function to fetch the subjects from Firestore
+// Função para buscar os livros da coleção 'study-materials'
 const fetchSubjects = async () => {
   try {
     const snapshot = await firebase
       .firestore()
-      .collection("study-subjects")
+      .collection("study-materials")
       .get();
     snapshot.forEach((doc) => {
-      const subjectName = doc.id;
+      const bookTitle = doc.data().title;
       const option = document.createElement("option");
-      option.value = subjectName;
-      option.textContent = subjectName;
+      option.value = bookTitle;
+      option.textContent = bookTitle;
       subjectSelection.appendChild(option);
     });
   } catch (error) {
-    console.error("Error fetching subjects:", error);
+    console.error("Erro ao buscar materiais:", error);
   }
 };
 
-// Call the fetchSubjects function to populate the options
 fetchSubjects();
 
-document.getElementById("save").addEventListener("click", saveCurrentTime);
-
-// Function to calculate the total study time for each subject
 const calculateTotalStudyTime = async () => {
   try {
     const user = firebase.auth().currentUser;
     if (!user) {
-      alert("User not logged in!");
+      alert("Usuário não está logado!");
       return;
     }
 
@@ -166,21 +146,23 @@ const calculateTotalStudyTime = async () => {
     const totalTimes = {};
 
     snapshot.forEach((doc) => {
-      const { subject, duration } = doc.data();
-      if (totalTimes[subject]) {
-        totalTimes[subject] += duration;
+      const { bookTitle, duration } = doc.data();
+      if (totalTimes[bookTitle]) {
+        totalTimes[bookTitle] += duration;
       } else {
-        totalTimes[subject] = duration;
+        totalTimes[bookTitle] = duration;
       }
     });
 
-    for (const subject in totalTimes) {
+    totalTimeList.innerHTML = ""; // Limpar a lista antes de adicionar novos itens
+
+    for (const bookTitle in totalTimes) {
       const listItem = document.createElement("li");
-      listItem.textContent = `${subject}: ${formatTime(totalTimes[subject])}`;
+      listItem.textContent = `${bookTitle}: ${formatTime(totalTimes[bookTitle])}`;
       listItem.classList.add("total-time-item");
       totalTimeList.appendChild(listItem);
     }
   } catch (error) {
-    console.error("Error calculating total study time:", error);
+    console.error("Erro ao calcular tempo total de estudo", error);
   }
 };

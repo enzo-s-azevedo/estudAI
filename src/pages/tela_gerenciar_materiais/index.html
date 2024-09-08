@@ -10,19 +10,22 @@
 
   <body>
     <div class="container">
-      <h1>Gereniar Materiais</h1>
+      <h1>Gerenciar Materiais</h1>
       <form id="searchMaterials-form">
         <label for="search">Pesquisar:</label>
-        <input type="text" id="search" nqame="search" required />
+        <input type="text" id="search" name="search" required />
 
         <button type="submit">Pesquisar</button>
       </form>
 
-      <div class="results" id="results">
+      <div class="results" id="results">  
         <table id="materialsTable">
           <thead>
             <tr>
-              <th>Material</th>
+              <th>Título</th>
+              <th>Descrição</th>
+              <th>Matéria</th>
+              <th>Autor</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -37,3 +40,4 @@
   <script src="../../scripts/auth-guard.js"></script>
   <script src="../../scripts/material-manager.js"></script>
 </html>
+ 
