@@ -41,14 +41,17 @@ document.addEventListener("DOMContentLoaded", function () {
             materialElement.appendChild(removeButton);
 
             container.appendChild(materialElement);
-            hideLoading();
           });
+
+          hideLoading(); // Ensure loading is hidden after data is processed
         })
         .catch((error) => {
           console.error("Erro ao obter os materiais:", error);
+          hideLoading(); // Ensure loading is hidden even if there's an error
         });
     } else {
       console.log("Usuário não autenticado");
+      hideLoading(); // Ensure loading is hidden if user is not authenticated
     }
   });
 });

@@ -35,17 +35,23 @@ document
           return material;
         });
         hideLoading();
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar materiais:", error);
+        hideLoading();
       });
 
-    const filteredMaterials = materials.filter(
-      (material) =>
-        removerAcentos(material.title.toLowerCase()).includes(searchTerm) ||
-        removerAcentos(material.description.toLowerCase()).includes(
-          searchTerm
-        ) ||
-        removerAcentos(material.subject.toLowerCase()).includes(searchTerm) ||
-        removerAcentos(material.author.toLowerCase()).includes(searchTerm)
-    );
+      const filteredMaterials = materials.filter((material) => {
+        const title = material.title ? removerAcentos(material.title.toLowerCase()) : "";
+        const description = material.description ? removerAcentos(material.description.toLowerCase()) : "";
+        const subject = material.subject ? removerAcentos(material.subject.toLowerCase()) : "";
+        const author = material.author ? removerAcentos(material.author.toLowerCase()) : "";
+        
+        return title.includes(searchTerm) ||
+          description.includes(searchTerm) ||
+          subject.includes(searchTerm) ||
+          author.includes(searchTerm);
+      });
 
     const resultsDiv = document.getElementById("results");
     resultsDiv.innerHTML = "";
@@ -55,14 +61,14 @@ document
         const materialDiv = document.createElement("div");
         materialDiv.className = "material-item";
         materialDiv.innerHTML = `
-                <h2>${material.title}</h2>
-                <p>ID: ${material.id}</p>
-                <p>Descrição: ${material.description}</p>
-                <p>Disciplina: ${material.subject}</p>
-                <p>Autor: ${material.author}</p>
-                <button onclick="adicionarBiblioteca('${material.id}')">adicionar a biblioteca</button>
-                <button onclick="removerBiblioteca('${material.id}')">Remover da biblioteca</button>
-            `;
+          <h2>${material.title}</h2>
+          <p>ID: ${material.id}</p>
+          <p>Descrição: ${material.description}</p>
+          <p>Disciplina: ${material.subject}</p>
+          <p>Autor: ${material.author}</p>
+          <button id="adicionar-${material.id}" onclick="adicionarBiblioteca('${material.id}')">Adicionar à Biblioteca</button>
+          <button id="remover-${material.id}" onclick="removerBiblioteca('${material.id}')">Remover da Biblioteca</button>
+        `;
         resultsDiv.appendChild(materialDiv);
       });
     } else {
@@ -70,6 +76,7 @@ document
     }
   });
 
+// Função para adicionar material à biblioteca do usuário
 function adicionarBiblioteca(id) {
   const user = firebase.auth().currentUser;
   if (!user) {
@@ -78,10 +85,7 @@ function adicionarBiblioteca(id) {
   }
   const userId = user.uid;
 
-  const materialRef = firebase
-    .firestore()
-    .collection("study-materials")
-    .doc(id);
+  const materialRef = firebase.firestore().collection("study-materials").doc(id);
   const userLibraryRef = firebase
     .firestore()
     .collection("users")
@@ -104,17 +108,13 @@ function adicionarBiblioteca(id) {
                 .doc(id)
                 .set(materialData)
                 .then(() => {
-                  alert(
-                    `Você adicionou o material com o ID ${id} à sua biblioteca.`
-                  );
+                  alert(`Material com o ID ${id} foi adicionado à sua biblioteca.`);
                   changeButtonText(`adicionar-${id}`, "Adicionado");
                   disableButton(`adicionar-${id}`);
+                  enableButton(`remover-${id}`);
                 })
                 .catch((error) => {
-                  console.error(
-                    "Erro ao adicionar o material à biblioteca:",
-                    error
-                  );
+                  console.error("Erro ao adicionar o material à biblioteca:", error);
                 });
             } else {
               console.error("Material não encontrado.");
@@ -130,20 +130,7 @@ function adicionarBiblioteca(id) {
     });
 }
 
-function changeButtonText(id, text) {
-  const button = document.getElementById(id);
-  if (button) {
-    button.innerText = text;
-  }
-}
-
-function disableButton(id) {
-  const button = document.getElementById(id);
-  if (button) {
-    button.disabled = true;
-  }
-}
-
+// Função para remover material da biblioteca do usuário
 function removerBiblioteca(id) {
   const user = firebase.auth().currentUser;
   if (!user) {
@@ -167,9 +154,10 @@ function removerBiblioteca(id) {
           .doc(id)
           .delete()
           .then(() => {
-            alert(`Você removeu o material com o ID ${id} da sua biblioteca.`);
+            alert(`Material com o ID ${id} foi removido da sua biblioteca.`);
             changeButtonText(`adicionar-${id}`, "Adicionar");
             enableButton(`adicionar-${id}`);
+            disableButton(`remover-${id}`);
           })
           .catch((error) => {
             console.error("Erro ao remover o material da biblioteca:", error);
@@ -182,6 +170,21 @@ function removerBiblioteca(id) {
     .catch((error) => {
       console.error("Erro ao verificar a biblioteca:", error);
     });
+}
+
+// Funções auxiliares para manipulação de botões
+function changeButtonText(id, text) {
+  const button = document.getElementById(id);
+  if (button) {
+    button.innerText = text;
+  }
+}
+
+function disableButton(id) {
+  const button = document.getElementById(id);
+  if (button) {
+    button.disabled = true;
+  }
 }
 
 function enableButton(id) {
