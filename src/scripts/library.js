@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   showLoading();
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       const materiaisRef = firebase
@@ -18,10 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const material = doc.data();
 
             const materialElement = document.createElement("div");
-            materialElement.classList.add("material");
+            materialElement.classList.add("material-item");
             materialElement.innerHTML = `
-              <h3>${material.title}</h3>
-              <p>${material.description}</p>
+              <h2>${material.title}</h2>
+              <p><strong>Descrição:</strong> ${material.description}</p>
+              <p><strong>Matéria:</strong> ${material.subject}</p>
+              <p><strong>Autor:</strong> ${material.author}</p>
             `;
 
             const removeButton = document.createElement("button");
@@ -43,15 +46,15 @@ document.addEventListener("DOMContentLoaded", function () {
             container.appendChild(materialElement);
           });
 
-          hideLoading(); // Ensure loading is hidden after data is processed
+          hideLoading(); 
         })
         .catch((error) => {
           console.error("Erro ao obter os materiais:", error);
-          hideLoading(); // Ensure loading is hidden even if there's an error
+          hideLoading(); 
         });
     } else {
       console.log("Usuário não autenticado");
-      hideLoading(); // Ensure loading is hidden if user is not authenticated
+      hideLoading(); 
     }
   });
 });
