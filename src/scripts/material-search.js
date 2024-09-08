@@ -28,7 +28,7 @@ document
             id: doc.id,
             title: data.title,
             description: data.description,
-            subject: data.subject.id,
+            subject: data.subject,
             author: data.author,
           };
           materials.push(material);
@@ -41,17 +41,27 @@ document
         hideLoading();
       });
 
-      const filteredMaterials = materials.filter((material) => {
-        const title = material.title ? removerAcentos(material.title.toLowerCase()) : "";
-        const description = material.description ? removerAcentos(material.description.toLowerCase()) : "";
-        const subject = material.subject ? removerAcentos(material.subject.toLowerCase()) : "";
-        const author = material.author ? removerAcentos(material.author.toLowerCase()) : "";
-        
-        return title.includes(searchTerm) ||
-          description.includes(searchTerm) ||
-          subject.includes(searchTerm) ||
-          author.includes(searchTerm);
-      });
+    const filteredMaterials = materials.filter((material) => {
+      const title = material.title
+        ? removerAcentos(material.title.toLowerCase())
+        : "";
+      const description = material.description
+        ? removerAcentos(material.description.toLowerCase())
+        : "";
+      const subject = material.subject
+        ? removerAcentos(material.subject.toLowerCase())
+        : "";
+      const author = material.author
+        ? removerAcentos(material.author.toLowerCase())
+        : "";
+
+      return (
+        title.includes(searchTerm) ||
+        description.includes(searchTerm) ||
+        subject.includes(searchTerm) ||
+        author.includes(searchTerm)
+      );
+    });
 
     const resultsDiv = document.getElementById("results");
     resultsDiv.innerHTML = "";
@@ -64,7 +74,7 @@ document
           <h2>${material.title}</h2>
           <p>ID: ${material.id}</p>
           <p>Descrição: ${material.description}</p>
-          <p>Disciplina: ${material.subject}</p>
+          <p>Matéria: ${material.subject}</p>
           <p>Autor: ${material.author}</p>
           <button id="adicionar-${material.id}" onclick="adicionarBiblioteca('${material.id}')">Adicionar à Biblioteca</button>
           <button id="remover-${material.id}" onclick="removerBiblioteca('${material.id}')">Remover da Biblioteca</button>
@@ -76,7 +86,7 @@ document
     }
   });
 
-// Função para adicionar material à biblioteca do usuário
+// Função para adicionar material à biblioteca pessoal
 function adicionarBiblioteca(id) {
   const user = firebase.auth().currentUser;
   if (!user) {
@@ -130,7 +140,7 @@ function adicionarBiblioteca(id) {
     });
 }
 
-// Função para remover material da biblioteca do usuário
+// Função para remover material da biblioteca pessoal
 function removerBiblioteca(id) {
   const user = firebase.auth().currentUser;
   if (!user) {
