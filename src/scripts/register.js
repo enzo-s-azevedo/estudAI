@@ -1,6 +1,6 @@
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    window.location.href = "/pages/tela_inicial";
+    window.location.href = "/";
   }
 });
 
@@ -55,7 +55,7 @@ function register() {
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
       hideLoading();
-      window.location.href = "/pages/tela_inicial";
+      window.location.href = "/";
     })
     .catch((error) => {
       hideLoading();

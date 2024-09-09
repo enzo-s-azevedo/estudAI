@@ -1,1 +1,1 @@
-redirectIfNotAdmin("/pages/tela_inicial");
+redirectIfNotAdmin("/");

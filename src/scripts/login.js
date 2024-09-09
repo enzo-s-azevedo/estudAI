@@ -1,6 +1,6 @@
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    window.location.href = "../../pages/tela_inicial";
+    window.location.href = "/";
   }
 });
 
@@ -31,8 +31,8 @@ function login() {
     .then(() => {
       hideLoading();
       if (form.email().value == "admin@admin.com") {
-        window.location.href = "../admin";
-      } else window.location.href = "../tela_inicial";
+        window.location.href = "/admin";
+      } else window.location.href = "/";
     })
     .catch((error) => {
       hideLoading();

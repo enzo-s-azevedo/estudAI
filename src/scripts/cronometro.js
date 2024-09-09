@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () =>
     if (user) {
       calculateTotalStudyTime();
     } else {
-      alert("Usuário não está logado!");
+      redirectIfNotAuthenticated("/login");
     }
   })
 );
@@ -158,7 +158,9 @@ const calculateTotalStudyTime = async () => {
 
     for (const bookTitle in totalTimes) {
       const listItem = document.createElement("li");
-      listItem.textContent = `${bookTitle}: ${formatTime(totalTimes[bookTitle])}`;
+      listItem.textContent = `${bookTitle}: ${formatTime(
+        totalTimes[bookTitle]
+      )}`;
       listItem.classList.add("total-time-item");
       totalTimeList.appendChild(listItem);
     }
