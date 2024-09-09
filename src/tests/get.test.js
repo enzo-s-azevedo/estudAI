@@ -1,7 +1,6 @@
-test("teste", async () => {
-  expect(
-    await fetch("https://jsonplaceholder.typicode.com/todos/1")
-      .then((response) => response.json())
-      .then((json) => json.id)
-  ).toBe(1);
+describe("Verificar se o site está rodando", () => {
+  test("GET / should return 200", async () => {
+    const res = await fetch("http://localhost:3000");
+    expect(res.status).toBe(200);
+  });
 });
