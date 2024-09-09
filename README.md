@@ -1,8 +1,17 @@
 # estudAI
 
-### Aplicativo de estudo com ferramentas de IA
+Um aplicativo de estudos com ferramentas de IA
 
-Após clonar o repositório, siga os seguintes passos:
+## Como Rodar o Projeto
 
-- utilize o comando "npm install" para baixar as dependências;
-- utilize o comando "npm start" para inicializar o site;
+Abra o terminal e execute os seguintes comandos:
+
+```bash
+git clone https://github.com/enzo-s-azevedo/estudAI.git
+cd estudAI
+npm install
+npm start
+```
+## Requisitos
+
+Node.js (versão mínima recomendada: 14.x)
